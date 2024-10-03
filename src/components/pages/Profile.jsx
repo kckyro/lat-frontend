@@ -29,15 +29,7 @@ const Profile = () => {
 		};
 
 		fetchProfileData();
-	}, [gameName, tagLine]);
-
-	if (isLoading) {
-		return <div>Loading...</div>;
-	}
-
-	if (error) {
-		return <div>{error}</div>;
-	}
+	}, [gameName, tagLine, profileData, isLoading]);
 
 	return (
 		<div>
