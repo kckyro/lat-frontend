@@ -1,3 +1,7 @@
+import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 const Profile = () => {
 	const { gameName, tagLine } = useParams();
 	const [profileData, setProfileData] = useState(null);
