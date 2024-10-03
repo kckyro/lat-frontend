@@ -1,7 +1,3 @@
-import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
 const Profile = () => {
 	const { gameName, tagLine } = useParams();
 	const [profileData, setProfileData] = useState(null);
@@ -29,11 +25,14 @@ const Profile = () => {
 		};
 
 		fetchProfileData();
-	}, [gameName, tagLine, profileData, isLoading]);
-
+	}, [gameName, tagLine]);
 	return (
 		<div>
-			{profileData ? (
+			{isLoading ? (
+				<div>Loading...</div>
+			) : error ? (
+				<div>{error}</div>
+			) : profileData ? (
 				<div>
 					<h1>
 						{profileData.gameName && profileData.tagLine
