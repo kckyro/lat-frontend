@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Profile = () => {
-	const { puuid } = useParams();
+	const { gameName, tagLine } = useParams();
 	const [profileData, setProfileData] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -14,7 +14,9 @@ const Profile = () => {
 			setError(null);
 			try {
 				const response = await axios.get(
-					`http://localhost:5125/api/profile/${puuid}`
+					`http://localhost:5125/profile/${encodeURIComponent(
+						gameName
+					)}/${encodeURIComponent(tagLine)}`
 				);
 				console.log(response.data);
 				setProfileData(response.data);
@@ -27,7 +29,7 @@ const Profile = () => {
 		};
 
 		fetchProfileData();
-	}, [puuid]);
+	}, [gameName, tagLine]);
 
 	if (isLoading) {
 		return <div>Loading...</div>;
@@ -42,12 +44,12 @@ const Profile = () => {
 			{profileData ? (
 				<div>
 					<h1>
-						{console.log(profileData)}
 						{profileData.gameName && profileData.tagLine
 							? `${profileData.gameName}#${profileData.tagLine}`
 							: "Unknown User"}
 					</h1>
-					<p>Level: {profileData.summonerLevel}</p>
+					<p>Region: {profileData.region || "Unknown Region"}</p>
+					<p>Profile Icon ID: {profileData.profileIconId}</p>
 				</div>
 			) : (
 				<div>Profile not found</div>

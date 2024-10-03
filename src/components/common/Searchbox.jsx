@@ -24,6 +24,11 @@ const SearchBox = ({ className = "" }) => {
 						gameName
 					)}&tagLine=${encodeURIComponent(tagLine)}`
 				);
+				console.log(
+					`sent axios request to: http://localhost:5125/api/search?gameName=${encodeURIComponent(
+						gameName
+					)}/tagLine=${encodeURIComponent(tagLine)}`
+				);
 				setUser(response.data);
 			} catch (error) {
 				console.error("Error fetching user", error);
@@ -56,7 +61,7 @@ const SearchBox = ({ className = "" }) => {
 	};
 
 	const handleSelect = (user) => {
-		navigate(`/profile/${user.puuid}`);
+		navigate(`/profile/${user.gameName}/${user.tagLine}`);
 		setShowDropdown(false);
 	};
 

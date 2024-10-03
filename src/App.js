@@ -13,7 +13,7 @@ function App() {
 				<Layout>
 					<Routes>
 						<Route path='/' element={<Splash />} />
-						<Route path='/profile/:puuid' element={<Profile />} />
+						<Route path='/profile/:gameName/:tagLine' element={<Profile />} />
 					</Routes>
 				</Layout>
 			</ThemeProvider>
